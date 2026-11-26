@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="NIMS Execution Documentation - توثيق تنفيذ مهام مشروع NIMS">
+  <title>NIMS | Execution Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div>
+        <h1>NIMS</h1>
+        <p>Execution Documentation</p>
+      </div>
+    </div>
+    <div class="system-status">
+      <span class="status-dot"></span>
+      نظام توثيق التنفيذ
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <div class="eyebrow">PROJECT WORKSPACE</div>
+      <h2>توثيق العمل وتنفيذ المهام</h2>
+      <p>
+        سجّل ما أنجزته، وأرفق الأكواد والملفات والأدلة المرتبطة
+        بمهمة المشروع، حتى تبقى أعمال الفريق موثقة ومنظمة.
+      </p>
+    </section>
+
+    <section class="notice">
+      <strong>ملاحظة مهمة</strong>
+      <p>
+        هذه واجهة رفع عامة. اسم العضو الذي تدخله هو اسم يصرّح به المستخدم
+        بنفسه ولا يمثل إثباتاً لهويته. لا ترفع كلمات مرور أو مفاتيح سرية
+        أو بيانات حساسة.
+      </p>
+    </section>
+
+    <section class="form-card">
+      <div class="section-heading">
+        <div>
+          <span class="section-number">01</span>
+          <h3>بيانات المهمة</h3>
+        </div>
+        <span class="required-note">* حقول مطلوبة</span>
+      </div>
+
+      <form id="uploadForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="actorName">اسم العضو <span>*</span></label>
+            <input
+              type="text"
+              id="actorName"
+              maxlength="80"
+              placeholder="أدخل اسمك"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="wbsId">معرّف المهمة WBS <span>*</span></label>
+            <input
+              type="text"
+              id="wbsId"
+              maxlength="36"
+              placeholder="مثال: WBS-001"
+              pattern="WBS-[A-Za-z0-9-]+"
+              title="استخدم الصيغة WBS-001"
+              required
+            >
+            <small>استخدم معرّف المهمة الموجود في خطة المشروع.</small>
+          </div>
+
+          <div class="field full-width">
+            <label for="taskName">اسم المهمة <span>*</span></label>
+            <input
+              type="text"
+              id="taskName"
+              maxlength="160"
+              placeholder="اكتب اسم المهمة كما هو في خطة العمل"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="status">حالة المهمة <span>*</span></label>
+            <select id="status" required>
+              <option value="In Progress">قيد التنفيذ</option>
+              <option value="Completed">مكتملة</option>
+              <option value="Blocked">متوقفة بسبب عائق</option>
+              <option value="Deferred">مؤجلة</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="workDate">تاريخ العمل</label>
+            <input type="date" id="workDate">
+          </div>
+
+          <div class="field full-width">
+            <label for="description">وصف العمل المنفّذ <span>*</span></label>
+            <textarea
+              id="description"
+              rows="4"
+              maxlength="2000"
+              placeholder="اشرح ما الذي عملت عليه، والخطوات التي نفذتها..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="field full-width">
+            <label for="actualResult">النتيجة الفعلية أو الاختبار</label>
+            <textarea
+              id="actualResult"
+              rows="3"
+              maxlength="2000"
+              placeholder="ما النتيجة التي حصلت عليها؟ وهل اختبرت العمل؟ اذكر النتيجة الفعلية."
+            ></textarea>
+            <small>رفع الملف وحده لا يعني أن المهمة اكتملت.</small>
+          </div>
+
+        </div>
+
+        <div class="section-heading file-heading">
+          <div>
+            <span class="section-number">02</span>
+            <h3>إرفاق الملفات والأدلة</h3>
+          </div>
+        </div>
+
+        <label class="file-drop" for="fileInput">
+          <span class="upload-icon">↑</span>
+          <strong>اختر الملف المراد رفعه</strong>
+          <span>اضغط هنا لتحديد ملف من جهازك</span>
+          <span class="file-limit">الحد الأقصى 4 MB — ملف واحد في كل عملية</span>
+          <input
+            type="file"
+            id="fileInput"
+            accept=".py,.cs,.js,.html,.css,.sql,.json,.xml,.yaml,.yml,.txt,.md,.pdf,.docx,.xlsx,.png,.jpg,.jpeg,.zip,.cfg,.conf,.ini,.csv,.log,.gns3,.drawio"
+            required
+          >
+        </label>
+
+        <div id="fileInfo" class="file-info hidden"></div>
+
+        <!-- Honeypot field: leave empty -->
+        <div class="website-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            tabindex="-1"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="form-footer">
+          <p>
+            تأكد من صحة معرّف المهمة وبيانات العمل قبل الإرسال.
+            لن يتم استبدال الملفات السابقة.
+          </p>
+          <button type="submit" id="submitButton">
+            <span id="buttonText">إرسال وتوثيق العمل</span>
+            <span class="button-arrow">←</span>
+          </button>
+        </div>
+
+      </form>
+
+      <div id="resultBox" class="result-box hidden" role="status" aria-live="polite">
+        <div id="resultTitle"></div>
+        <p id="resultMessage"></p>
+      </div>
+
+    </section>
+
+    <section class="bottom-note">
+      <span> NIMS </span>
+      <p>Network Infrastructure Management System</p>
+      <small>Execution Documentation Workspace</small>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 NIMS Project Team</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
